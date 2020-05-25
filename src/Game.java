@@ -5,10 +5,12 @@ import com.sun.xml.internal.bind.v2.model.annotation.RuntimeAnnotationReader;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.*;
@@ -48,16 +50,14 @@ public class Game  {
     private Enemy enemy;
     boolean running, goRight, goLeft, shooting;
     boolean isRight = true;
-    private Stage stage;
-    private Scene scene;
     private int countDown = 0;
 
     private MyThread myThread;
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        game = this;
-        this.stage = stage;
+    public Game (Group group) {
+        this.group = group;
+    }
+    public void createGame() {
         spaceShipImage = new Image(SPACESHIP_IMAGE);
         myThread = new MyThread();
         ImageView imageView = new ImageView(spaceShipImage);
@@ -72,12 +72,9 @@ public class Game  {
         enemies2 = new ArrayList<>();
         enemies3 = new ArrayList<>();
         enemies4 = new ArrayList<>();
-        group = new Group(spaceShip);
         spaceShip.relocate(W / 2, 500);
-
-        Scene scene = new Scene(group, W, H, Color.BLACK);
-        this.scene = scene;
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        group.getChildren().add(spaceShip);
+        group.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
@@ -98,7 +95,7 @@ public class Game  {
             }
         });
 
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        group.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
@@ -119,9 +116,9 @@ public class Game  {
         });
 
         addEnemyToScene();
-        stage.setScene(scene);
-        stage.show();
         myThread.start();
+        timer.start();
+    }
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -146,8 +143,7 @@ public class Game  {
                 moveBallByThread();
             }
         };
-        timer.start();
-    }
+
 
 
     private void addEnemyToScene() {
@@ -242,15 +238,18 @@ public class Game  {
     }
     public void showText(){
         Label label = new Label("GAME OVER");
+        Button playAgainButton = new Button("PLAY AGAIN");
+        playAgainButton.setPrefSize(150, 50);
+        Button exitButton = new Button("EXIT");
+        exitButton.setTextFill(Color.RED);
+        exitButton.setPrefSize(150, 50);
         label.setFont(new Font("Arial", 50));
         label.setTextFill(Color.RED);
-        VBox vbox = new VBox(label);
+        VBox vbox = new VBox(label, playAgainButton, exitButton);
         vbox.setAlignment(Pos.CENTER);
         Scene newScene = new Scene(vbox, 600, 600, Color.BLACK);
-        stage.setScene(newScene);
-//        stage.show();
-
-
+//        exitButton.setOnMouseClicked();
+        Main.switchToGameOver(newScene);
     }
 
     public void moveRowsRight(ArrayList<Node> enemies, int size) {
