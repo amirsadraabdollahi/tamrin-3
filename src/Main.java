@@ -4,14 +4,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import java.nio.file.Paths;
 
 
 public class Main extends Application {
 
     public static Stage primaryStage;
     public static Main mainObject;
+    public static MusicThread musicThread;
 
     public static void main(String[] args) {
         Application.launch();
@@ -19,8 +23,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        User.users.add(new User("sadra"));
         Main.primaryStage = primaryStage;
         Main.mainObject = this;
+        Main.musicThread = new MusicThread();
+        musicThread.start();
         loginProcess(primaryStage);
         primaryStage.show();
 
@@ -42,6 +49,13 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         game.createGame();
         primaryStage.show();
+    }
+
+    public static MediaPlayer music(){
+        String path = "src/music.mp3";
+        Media media = new Media(Paths.get(path).toUri().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        return mediaPlayer;
     }
 
     public void loginProcess(Stage primaryStage) throws Exception {

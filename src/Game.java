@@ -54,7 +54,6 @@ public class Game {
     private int countDown = 0;
     private int points = 0;
     private Label pointsLabel;
-
     private MyThread myThread;
 
     public Game(Group group) {
@@ -69,6 +68,7 @@ public class Game {
         imageView.setFitHeight(80);
         imageView.setFitWidth(80);
         spaceShip = imageView;
+        StackPane.setAlignment(spaceShip, Pos.CENTER);
         bullet = Bullet.getInstance();
         enemy = Enemy.getInstance();
         bullets = new ArrayList<>();
@@ -249,7 +249,7 @@ public class Game {
     }
 
     public boolean checkEnemyShoot(Node enemyBall) {
-        if ((Math.pow(spaceShip.getLayoutX() - enemyBall.getLayoutX(), 2) + Math.pow(spaceShip.getLayoutY() - enemyBall.getLayoutY(), 2)) <= 1000) {
+        if ((Math.pow(spaceShip.getLayoutX() - enemyBall.getLayoutX(), 2) + Math.pow(spaceShip.getLayoutY() - enemyBall.getLayoutY(), 2)) <= 1200) {
             removeNode(spaceShip);
             gameIsOVer("GAME OVER", String.valueOf(points));
             return true;
@@ -358,7 +358,7 @@ public class Game {
         exitButton.setPrefSize(150, 50);
         gameLabel.setFont(new Font("Arial", 50));
         gameLabel.setTextFill(Color.RED);
-        pointsLabel.setFont(new Font("Bold", 20));
+        pointsLabel.setFont(new Font("Arial", 20));
         pointsLabel.setTextFill(Color.BLACK);
         VBox vbox = new VBox(gameLabel, pointsLabel, playAgainButton, exitButton);
         vbox.setAlignment(Pos.CENTER);
