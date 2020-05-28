@@ -13,7 +13,6 @@ public class Main extends Application {
     public static Stage primaryStage;
     public static Main mainObject;
 
-    public static boolean check = false;
     public static void main(String[] args) {
         Application.launch();
     }
@@ -48,7 +47,7 @@ public class Main extends Application {
     public void loginProcess(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene loginScene = new Scene(root,500, 300, Color.WHITE);
-        primaryStage.setTitle("FXML Welcome");
+        primaryStage.setTitle("SPACE SHIP");
         primaryStage.setScene(loginScene);
         primaryStage.show();
     }

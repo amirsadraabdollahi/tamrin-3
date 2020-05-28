@@ -1,26 +1,15 @@
 
 public class MyThread extends Thread implements Runnable {
-    private boolean isRight;
-    private int counter = 0;
-    private int countSecond = 3;
+        private int countSecond = 3;
 
     public MyThread() {
-        this.isRight = true;
-    }
-
-    public int getCounter() {
-        return counter;
     }
 
     public int getCountSecond() {
         return countSecond;
     }
 
-    public boolean getIsRight() {
-        return isRight;
-    }
-
-    public void setCountSecond(int countSecond) {
+    public void increaseCountSecond(int countSecond) {
         this.countSecond += countSecond;
     }
 
