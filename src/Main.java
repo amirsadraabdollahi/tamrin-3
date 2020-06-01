@@ -8,10 +8,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.net.URL;
-import java.nio.file.Paths;
 
 
 public class Main extends Application {
@@ -26,13 +23,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        User.users.add(new User("sadra"));
         Main.primaryStage = primaryStage;
         Main.mainObject = this;
         Main.musicThread = new MusicThread();
         musicThread.start();
         loginProcess(primaryStage);
-        primaryStage.show();
+//        primaryStage.show();
 
     }
 
@@ -42,16 +38,26 @@ public class Main extends Application {
 
     public static void switchToGameOver(Scene scene){
         Main.primaryStage.setScene(scene);
-        primaryStage.show();
+//        primaryStage.show();
+//        primaryStage.close();
+//        Stage newStage = new Stage();
+//        primaryStage = newStage;
+//        newStage.setScene(scene);
+//        newStage.show();
     }
 
     public void gameProcess(Stage primaryStage) {
         Group group = new Group();
-        Game game = new Game(group);
+        Game game = new Game(group, User.getLastUser());
         Scene scene = new Scene(group, 600, 600, Color.BLACK);
-        primaryStage.setScene(scene);
         game.createGame();
-        primaryStage.show();
+        primaryStage.setScene(scene);
+//        primaryStage.show();
+//        primaryStage.close();
+//        Stage newStage = new Stage();
+//        primaryStage = newStage;
+//        newStage.setScene(scene);
+//        newStage.show();
     }
 
     public static MediaPlayer music(){
@@ -67,5 +73,21 @@ public class Main extends Application {
         primaryStage.setTitle("SPACE SHIP");
         primaryStage.setScene(loginScene);
         primaryStage.show();
+    }
+
+    public static void switchToGameMenu(){
+        mainObject.gameMenu();
+    }
+
+    public void gameMenu(){
+
+    }
+
+    public static void switchToSignUpMenu(){
+        mainObject.signUpMenu();
+    }
+
+    public void signUpMenu(){
+
     }
 }

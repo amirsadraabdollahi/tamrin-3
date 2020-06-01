@@ -37,6 +37,7 @@ public class Game {
 //            "http://icons.iconarchive.com/icons/everaldo/crystal-clear/128/App-launch-spaceship-icon.png";
 
     private static final String SPACESHIP_IMAGE= "img/spaceShipImage.png";
+    User user;
     private Random random;
     private Image spaceShipImage;
     private Node spaceShip;
@@ -50,18 +51,22 @@ public class Game {
     private Group group;
     private Bullet bullet;
     private Enemy enemy;
-    private boolean running, goRight, goLeft, shooting;
+    private boolean finish = false, running, goRight, goLeft, shooting;
     private boolean keepShooting = true, isRight = true;
     private int countDown = 0;
     private int points = 0;
     private Label pointsLabel;
     private MyThread myThread;
+    private GameOver gameOver;
 
-    public Game(Group group) {
+    public Game(Group group, User user) {
         this.group = group;
+        this.user = user;
     }
 
     public void createGame() {
+
+        gameOver = new GameOver();
         random = new Random();
         spaceShipImage = new Image(SPACESHIP_IMAGE, true);
         myThread = new MyThread();
@@ -135,6 +140,10 @@ public class Game {
 
             int dx = 0;
 
+            if(finish){
+                timer.stop();
+            }
+
             if (goRight) {
                 dx += 1;
             }
@@ -155,7 +164,6 @@ public class Game {
             enemyShootByThread();
             moveEnemyBallByThread();
             moveBallByThread();
-            checkWin();
 
         }
     };
@@ -251,8 +259,9 @@ public class Game {
 
     public boolean checkEnemyShoot(Node enemyBall) {
         if ((Math.pow(spaceShip.getLayoutX() - enemyBall.getLayoutX(), 2) + Math.pow(spaceShip.getLayoutY() - enemyBall.getLayoutY(), 2)) <= 1200) {
+            finish = true;
             removeNode(spaceShip);
-            gameIsOVer("GAME OVER", String.valueOf(points));
+            gameOver.gameIsOVer("GAME OVER", String.valueOf(points));
             return true;
         }
         return false;
@@ -271,7 +280,8 @@ public class Game {
 
     public void checkWin() {
         if (enemies.isEmpty()) {
-            gameIsOVer("!! CONGRATULATION !!", "40");
+            finish = true;
+            gameOver.gameIsOVer("!! CONGRATULATION !!", "40");
         }
     }
 
@@ -310,7 +320,8 @@ public class Game {
             Node enemy = enemies.get(i);
             enemy.relocate(enemy.getLayoutX(), enemy.getLayoutY() + 40);
             if (enemy.getLayoutY() > 600) {
-                gameIsOVer("GAME OVER", String.valueOf(points));
+                finish = true;
+                gameOver.gameIsOVer("GAME OVER", String.valueOf(points));
             }
 
         }
@@ -344,47 +355,10 @@ public class Game {
             Node enemy = enemies.get(i);
             if ((Math.pow(enemy.getLayoutX() - spaceShip.getLayoutX(), 2) + Math.pow(enemy.getLayoutY() - spaceShip.getLayoutY(), 2)) < 1000) {
                 group.setVisible(false);
-                gameIsOVer("GAME OVER", String.valueOf(points));
+                finish = true;
+                gameOver.gameIsOVer("GAME OVER", String.valueOf(points));
             }
         }
-    }
-
-    public void gameIsOVer(String show, String points) {
-        myThread.stop();
-        Label gameLabel = new Label(show);
-        Label pointsLabel = new Label("points : " + points);
-        Button playAgainButton = new Button("PLAY AGAIN");
-        playAgainButton.setPrefSize(150, 50);
-        Button exitButton = new Button("EXIT");
-        exitButton.setTextFill(Color.RED);
-        exitButton.setPrefSize(150, 50);
-        gameLabel.setFont(new Font("Arial", 50));
-        gameLabel.setTextFill(Color.RED);
-        pointsLabel.setFont(new Font("Arial", 20));
-        pointsLabel.setTextFill(Color.BLACK);
-        VBox vbox = new VBox(gameLabel, pointsLabel, playAgainButton, exitButton);
-        vbox.setAlignment(Pos.CENTER);
-        Scene newScene = new Scene(vbox, 600, 600, Color.BLACK);
-        Main.switchToGameOver(newScene);
-        exitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                exitTheGame();
-            }
-        });
-        playAgainButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                switchToGame();
-            }
-        });
-    }
-    public void exitTheGame(){
-        System.exit(0);
-    }
-
-    public void switchToGame(){
-        Main.switchToGame();
     }
 
     public void moveRowsRight(ArrayList<Node> enemies, int size) {
@@ -479,6 +453,7 @@ public class Game {
                 enemy.setVisible(false);
                 points += 1;
                 updatePoints();
+                checkWin();
                 return true;
             }
         }
