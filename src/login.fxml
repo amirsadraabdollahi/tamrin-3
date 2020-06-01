@@ -24,9 +24,12 @@
 
     <TextField fx:id="passwordTextField" prefHeight="31.0" prefWidth="147.0" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="3" />
 
-    <Button alignment="CENTER" onMouseClicked="#signIn" prefHeight="31.0" prefWidth="150.0" text="SIGN IN" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <Button alignment="CENTER" onMouseClicked="#signIn" prefHeight="31.0" prefWidth="150.0" text="SIGN IN"
+            GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-    <Button alignment="CENTER" onMouseClicked="#signUp" prefHeight="31.0" prefWidth="150.0" text="SIGN UP" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <Button alignment="CENTER" onMouseClicked="#signUp" prefHeight="31.0" prefWidth="150.0" text="SIGN UP"
+            GridPane.columnIndex="1" GridPane.rowIndex="5"/>
 
-    <Button alignment="CENTER" onMouseClicked="#exitButton" prefHeight="31.0" prefWidth="150.0" text="EXIT" textFill="#801925" GridPane.rowIndex="4" />
+    <Button alignment="CENTER" onMouseClicked="#exitButton" prefHeight="31.0" prefWidth="150.0" text="EXIT"
+            textFill="#801925" GridPane.rowIndex="4"/>
 </GridPane>

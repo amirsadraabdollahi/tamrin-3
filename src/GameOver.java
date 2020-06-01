@@ -43,11 +43,12 @@ public class GameOver {
             }
         });
     }
-    public void exitTheGame(){
+
+    public void exitTheGame() {
         System.exit(0);
     }
 
-    public void switchToGame(){
+    public void switchToGame() {
         Main.switchToGame();
     }
 }

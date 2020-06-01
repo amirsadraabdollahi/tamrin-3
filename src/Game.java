@@ -36,7 +36,7 @@ public class Game {
 //    private static final String SPACESHIP_IMAGE =
 //            "http://icons.iconarchive.com/icons/everaldo/crystal-clear/128/App-launch-spaceship-icon.png";
 
-    private static final String SPACESHIP_IMAGE= "img/spaceShipImage.png";
+    private static final String SPACESHIP_IMAGE = "img/spaceShipImage.png";
     User user;
     private Random random;
     private Image spaceShipImage;
@@ -140,7 +140,7 @@ public class Game {
 
             int dx = 0;
 
-            if(finish){
+            if (finish) {
                 timer.stop();
             }
 
@@ -168,7 +168,7 @@ public class Game {
         }
     };
 
-    private void writePoint(){
+    private void writePoint() {
         pointsLabel = new Label("points : " + points);
         pointsLabel.getStyleClass().add("outline");
         pointsLabel.setFont(new Font("Arial", 20));
@@ -461,7 +461,7 @@ public class Game {
         return false;
     }
 
-    private void updatePoints(){
+    private void updatePoints() {
         pointsLabel.setText("points : " + points);
     }
 

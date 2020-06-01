@@ -1,5 +1,8 @@
-import java.lang.reflect.Array;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class User {
 
@@ -52,12 +55,21 @@ public class User {
         return users.get(users.size() - 1);
     }
 
-    public static String correctUserPass(String userName, String password){
+    public static String newUserPass(String userName) {
         for (User user : users) {
-            if(user.getUserName().equals(userName)){
-                if(user.getPassword().equals(password)){
+            if (user.getUserName().equals(userName)) {
+                return "invalid userName";
+            }
+        }
+        return "correct";
+    }
+
+    public static String correctUserPass(String userName, String password) {
+        for (User user : users) {
+            if (user.getUserName().equals(userName)) {
+                if (user.getPassword().equals(password)) {
                     return "correct";
-                } else{
+                } else {
                     return "invalid password";
                 }
             }
@@ -65,12 +77,29 @@ public class User {
         return "invalid userName";
     }
 
-    public static void putOnlineUser(String userName){
+    public static void putOnlineUser(String userName) {
         for (User user : users) {
-            if(user.getUserName().equalsIgnoreCase(userName)){
+            if (user.getUserName().equalsIgnoreCase(userName)) {
                 onlineUser = user;
                 return;
             }
         }
+    }
+
+    public static ArrayList<User> sortedUsers(){
+        ArrayList<User> sortedUsers = new ArrayList<>(users);
+        Collections.sort(sortedUsers, new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                if(o1.getMaxPoint() > o2.getMaxPoint()){
+                    return -1;
+                } else if(o1.getMaxPoint() < o2.getMaxPoint()){
+                    return 1;
+                } else{
+                    return 0;
+                }
+            }
+        });
+        return sortedUsers;
     }
 }
