@@ -5,8 +5,8 @@ import javafx.scene.image.ImageView;
 
 public class Bullet {
 
-    private static final String SPACE_SHIP_BULLET_IMAGE = "http://icons.iconarchive.com/icons/hopstarter/soft-scraps/32/Button-Blank-Red-icon.png";
-    private static final String ENEMIES_BULLET_IMAGE = "http://icons.iconarchive.com/icons/dapino/magic-people/48/Magic-ball-icon.png";
+    private static final String SPACE_SHIP_BULLET_IMAGE = "img/redBullet.png";
+    private static final String ENEMIES_BULLET_IMAGE = "img/blueBullet.png";
     private static Bullet ourInstance = new Bullet();
 
     public static Bullet getInstance() {

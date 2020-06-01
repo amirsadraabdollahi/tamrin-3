@@ -8,6 +8,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.net.URL;
 import java.nio.file.Paths;
 
 
@@ -52,8 +55,8 @@ public class Main extends Application {
     }
 
     public static MediaPlayer music(){
-        String path = "src/music.mp3";
-        Media media = new Media(Paths.get(path).toUri().toString());
+        File file=new File("src/music/music.mp3");
+        Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         return mediaPlayer;
     }

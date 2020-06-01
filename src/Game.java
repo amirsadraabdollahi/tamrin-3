@@ -33,9 +33,10 @@ public class Game {
 
     private static final double W = 600, H = 600;
 
-    private static final String SPACESHIP_IMAGE =
-            "http://icons.iconarchive.com/icons/everaldo/crystal-clear/128/App-launch-spaceship-icon.png";
+//    private static final String SPACESHIP_IMAGE =
+//            "http://icons.iconarchive.com/icons/everaldo/crystal-clear/128/App-launch-spaceship-icon.png";
 
+    private static final String SPACESHIP_IMAGE= "img/spaceShipImage.png";
     private Random random;
     private Image spaceShipImage;
     private Node spaceShip;
@@ -62,7 +63,7 @@ public class Game {
 
     public void createGame() {
         random = new Random();
-        spaceShipImage = new Image(SPACESHIP_IMAGE);
+        spaceShipImage = new Image(SPACESHIP_IMAGE, true);
         myThread = new MyThread();
         ImageView imageView = new ImageView(spaceShipImage);
         imageView.setFitHeight(80);
@@ -349,6 +350,7 @@ public class Game {
     }
 
     public void gameIsOVer(String show, String points) {
+        myThread.stop();
         Label gameLabel = new Label(show);
         Label pointsLabel = new Label("points : " + points);
         Button playAgainButton = new Button("PLAY AGAIN");
@@ -367,16 +369,22 @@ public class Game {
         exitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.exit(0);
+                exitTheGame();
             }
         });
         playAgainButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("fuck javafx play again");
-                Main.switchToGame();
+                switchToGame();
             }
         });
+    }
+    public void exitTheGame(){
+        System.exit(0);
+    }
+
+    public void switchToGame(){
+        Main.switchToGame();
     }
 
     public void moveRowsRight(ArrayList<Node> enemies, int size) {

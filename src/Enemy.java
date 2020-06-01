@@ -3,10 +3,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Enemy {
-    private static final String ENEMY_IMAGE1 = "http://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/alienarena-icon.png";
-    private static final String ENEMY_IMAGE2 = "http://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/clamav-icon.png";
-    private static final String ENEMY_IMAGE3 = "http://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/desura-icon.png";
-    private static final String ENEMY_IMAGE4 = "http://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/the-witcher-2-icon.png";
+    private static final String ENEMY_IMAGE1 = "img/enemy1.png";
+    private static final String ENEMY_IMAGE2 = "img/enemy2.png";
+    private static final String ENEMY_IMAGE3 = "img/enemy3.png";
+    private static final String ENEMY_IMAGE4 = "img/enemy4.png";
 
     private static Enemy ourInstance = new Enemy();
 
