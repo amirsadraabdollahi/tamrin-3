@@ -22,10 +22,17 @@ public class RankingController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         int counter = 1;
+        userNames.add("userName                    point");
         for (User user : User.sortedUsers()) {
-            userNames.add(counter + "." + user.getUserName());
+            String s;
+            s = counter + "." + user.getUserName();
+            int size = user.getUserName().length() + 2;
+            for(int i=0;i<28-size;i++)s=s.concat(" ");
+            s = s.concat("" + user.getAveragePoint());
+            userNames.add(s);
             counter += 1;
         }
+        myListView.setItems(userNames);
     }
 
     public void back(){

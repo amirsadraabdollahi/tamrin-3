@@ -28,6 +28,18 @@ public class User {
         return password;
     }
 
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
+    public boolean correctPassword(String password){
+        if(this.getPassword().equals(password)){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
     public void addPoint(int point) {
         this.points.add(point);
     }
@@ -41,14 +53,9 @@ public class User {
         }
         return maxPoint;
     }
-
-    public static boolean hasUserWithThisUserName(String userName) {
-        for (User user : users) {
-            if (user.getUserName().equalsIgnoreCase(userName)) {
-                return true;
-            }
-        }
-        return false;
+    public double getAveragePoint(){
+        int gamePlayed = points.size();
+        return ((double)getMaxPoint())/gamePlayed;
     }
 
     public static User getLastUser() {
@@ -66,6 +73,7 @@ public class User {
 
     public static String correctUserPass(String userName, String password) {
         for (User user : users) {
+            System.out.println(user.getUserName());
             if (user.getUserName().equals(userName)) {
                 if (user.getPassword().equals(password)) {
                     return "correct";
@@ -87,13 +95,18 @@ public class User {
     }
 
     public static ArrayList<User> sortedUsers(){
-        ArrayList<User> sortedUsers = new ArrayList<>(users);
+        ArrayList<User> sortedUsers = new ArrayList<>();
+        for (User user : users) {
+            if(user.points.size()!=0){
+                sortedUsers.add(user);
+            }
+        }
         Collections.sort(sortedUsers, new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
                 if(o1.getMaxPoint() > o2.getMaxPoint()){
                     return -1;
-                } else if(o1.getMaxPoint() < o2.getMaxPoint()){
+                } else if(o1.getAveragePoint() < o2.getAveragePoint()){
                     return 1;
                 } else{
                     return 0;

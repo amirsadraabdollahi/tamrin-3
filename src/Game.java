@@ -145,20 +145,19 @@ public class Game {
             }
 
             if (goRight) {
-                dx += 1;
+                dx += 2;
             }
             if (goLeft) {
-                dx -= 1;
+                dx -= 2;
             }
             if (running) {
-                dx *= 3;
+                dx *= 2.5;
             }
             if (shooting) {
                 keepShooting = true;
                 shootByThread();
                 shooting = false;
             }
-//                moveEnemiesByThread();
             moveEnemies();
             moveSpaceShipBy(dx);
             enemyShootByThread();
@@ -267,21 +266,11 @@ public class Game {
         return false;
     }
 
-    public void moveEnemiesByThread() {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                moveEnemies();
-            }
-        };
-        Thread thread5 = new Thread(runnable);
-        thread5.start();
-    }
 
     public void checkWin() {
         if (enemies.isEmpty()) {
             finish = true;
-            gameOver.gameIsOVer("!! CONGRATULATION !!", "40");
+            gameOver.gameIsOVer("CONGRATULATION", "40");
         }
     }
 

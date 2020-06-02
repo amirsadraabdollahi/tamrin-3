@@ -5,10 +5,10 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameMenuController implements Initializable{
+public class GameMenuController implements Initializable {
 
     @FXML
-    Text user;
+    private Text user;
 
     public void playGame() {
         Main.switchToGame();
@@ -16,6 +16,10 @@ public class GameMenuController implements Initializable{
 
     public void ranking() {
         Main.switchToRanking();
+    }
+
+    public void personalInfo() {
+        Main.switchToPersonalInfoMenu();
     }
 
     public void signOut() {

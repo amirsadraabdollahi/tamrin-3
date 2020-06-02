@@ -22,6 +22,8 @@ public class Main extends Application {
         Application.launch();
     }
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
@@ -109,6 +111,22 @@ public class Main extends Application {
     }
     public void ranking()throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Ranking.fxml"));
+        Scene loginScene = new Scene(root, 500, 300, Color.WHITE);
+        primaryStage.setTitle("SPACE SHIP");
+        primaryStage.setScene(loginScene);
+        primaryStage.show();
+    }
+
+    public static void switchToPersonalInfoMenu() {
+        try {
+            mainObject.personalInfoMenu();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void personalInfoMenu()throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("PersonalInfo.fxml"));
         Scene loginScene = new Scene(root, 500, 300, Color.WHITE);
         primaryStage.setTitle("SPACE SHIP");
         primaryStage.setScene(loginScene);

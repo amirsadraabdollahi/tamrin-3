@@ -7,40 +7,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane prefHeight="178.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameMenuController">
-    <Text text="SPACE INVADERS" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="1">
+<GridPane prefHeight="300.0" prefWidth="528.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameMenuController">
+    <Text text="SPACE INVADERS" textAlignment="CENTER" wrappingWidth="159.0" GridPane.columnIndex="1"
+          GridPane.columnSpan="1" GridPane.rowIndex="1">
         <font>
-            <Font name="Arial Black" size="12.0" />
+            <Font name="Arial Black" size="12.0"/>
         </font>
     </Text>
-    <Text fx:id="user" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.columnSpan="1" GridPane.rowIndex="1">
+    <Text fx:id="user" text="userName" textAlignment="CENTER" wrappingWidth="153.0" GridPane.columnIndex="3"
+          GridPane.columnSpan="1" GridPane.rowIndex="1">
         <font>
-            <Font name="Arial Black" size="12.0" />
+            <Font name="Arial Black" size="12.0"/>
         </font>
     </Text>
-    <Text text="HELLO" textAlignment="CENTER" wrappingWidth="134.33203125" GridPane.columnIndex="2" GridPane.columnSpan="1" GridPane.rowIndex="2">
+    <Text text="HELLO" textAlignment="CENTER" wrappingWidth="213.0" GridPane.columnIndex="2"
+          GridPane.columnSpan="1" GridPane.rowIndex="3">
         <font>
-            <Font name="Arial Black" size="24.0" />
+            <Font name="Arial Black" size="24.0"/>
         </font>
     </Text>
 
-    <Button onMouseClicked="#playGame" prefHeight="31.0" prefWidth="135.0" text="PLAY GAME" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    <Button onMouseClicked="#ranking" prefHeight="31.0" prefWidth="135.0" text="RANKING" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-    <Button onMouseClicked="#signOut" prefHeight="31.0" prefWidth="136.0" text="SIGN OUT" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
+    <Button onMouseClicked="#playGame" prefHeight="40.0" prefWidth="214.0" text="PLAY GAME" textAlignment="CENTER"
+            GridPane.columnIndex="2" GridPane.columnSpan="1" GridPane.rowIndex="4"/>
+    <Button onMouseClicked="#ranking" prefHeight="44.0" prefWidth="214.0" text="RANKING" textAlignment="CENTER"
+            GridPane.columnIndex="2" GridPane.columnSpan="1" GridPane.rowIndex="5"/>
+    <Button onMouseClicked="#personalInfo" prefHeight="44.0" prefWidth="214.0" text="PERSONAL INFO"
+            textAlignment="CENTER"
+            GridPane.columnIndex="2" GridPane.columnSpan="1" GridPane.rowIndex="6"/>
 
+    <Button onMouseClicked="#signOut" prefHeight="43.0" prefWidth="214.0" text="SIGN OUT" textAlignment="CENTER"
+            GridPane.columnIndex="2" GridPane.columnSpan="1" GridPane.rowIndex="7"/>
 
 </GridPane>

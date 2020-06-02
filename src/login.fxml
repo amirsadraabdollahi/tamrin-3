@@ -9,7 +9,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" prefHeight="400.0" prefWidth="501.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+<?import javafx.scene.control.PasswordField?>
+<GridPane alignment="center" hgap="10" prefHeight="300.0" prefWidth="500.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
     <Text text="Welcome" GridPane.columnSpan="1" GridPane.rowIndex="1">
         <font>
             <Font name="Arial Black" size="24.0" />
@@ -22,7 +23,7 @@
 
     <TextField fx:id="userNameTextField" prefHeight="31.0" prefWidth="147.0" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="2" />
 
-    <TextField fx:id="passwordTextField" prefHeight="31.0" prefWidth="147.0" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="3" />
+    <PasswordField fx:id="passwordField" prefHeight="31.0" prefWidth="147.0" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="3" />
 
     <Button alignment="CENTER" onMouseClicked="#signIn" prefHeight="31.0" prefWidth="150.0" text="SIGN IN"
             GridPane.columnIndex="1" GridPane.rowIndex="4"/>
